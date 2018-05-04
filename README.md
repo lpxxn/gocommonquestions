@@ -1,0 +1,2 @@
+# gocommonquestions
+golang comon questions
