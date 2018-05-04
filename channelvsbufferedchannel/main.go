@@ -1,11 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	//c1 := make(chan bool, 0)  // unbuffered channel
-	//c2 := make(chan bool)     // unbuffered channel
+	c1 := make(chan bool, 0)  // unbuffered channel
+	c2 := make(chan bool)     // unbuffered channel
 
+	go func() {
+		c1 <- false
+		time.Sleep(time.Second * 2)
+		c2 <- true
+	}()
+
+	fmt.Println(<-c1)
+	fmt.Println(<-c2)
 
 	c3 := make(chan bool, 5)  // buffered channel
 
